@@ -1,6 +1,7 @@
 #https://bottlepy.org/docs/dev/tutorial.html
 from bottle import Bottle, run, get, post, request, redirect, static_file
 import functions
+import html
 
 app = Bottle()
 
@@ -16,16 +17,18 @@ def display():
     return functions.display_lots()
 
 
-
-
 @app.post('/')
 def lot_grab():
     #Use a dynamic route!
     lot = request.forms.get("lot")
-    redirect("/" + lot) #better way to do this? Formatting strings?
+    lot = html.escape(lot) #https://docs.python.org/3/library/html.html
+    if lot == "Fargo" or lot == "Jarvis":
+        redirect("/" + lot) #better way to do this? Formatting strings?
+    else:
+        return "<h2> Not a parking lot </h2>"
 
 
-@app.get('/fargo')
+@app.get('/Fargo')
 def fargo():
     lot = "fargo"
     return '''Welcome to Fargo Lot! </br>
@@ -48,10 +51,26 @@ def fargo_leave():
 
 
 
-@app.route('/jarvis')
+@app.route('/Jarvis')
 def jarvis():
     lot = "jarvis"
-    return "Welcome to Jarvis!"
+    return '''Welcome to Jarvis Lot! </br>
+        <form action='/jarvis-parked' method="post">
+            <input value="Park" type="submit" />
+        </form>
+    '''
+@app.post('/jarvis-parked')
+def jarvis_parked():
+    functions.enter_lot("jarvis")
+    return '''Welcome to Jarvis Lot! </br>
+        <form action='/jarvis-leave' method="post">
+            <input value="Leave" type="submit" />
+        </form>
+    '''
+@app.post('/jarvis-leave')
+def jarvis_leave():
+    functions.leave_lot("jarvis")
+    return "Thank you for parking at Jarvis!"
 
 
 run(app, host='localhost', port=8080, debug=True)

@@ -1,0 +1,9 @@
+Future actions to implement and consider:
+
+Edge cases:
+* What happens when the code hits 0 spots? How do you check if there are more?
+* How can you add more parking lots? Manual creation or is there a way for routes to be combined?
+* How can you secure the site better? I have SQL and HTML basic protection but other than that...
+
+To add:
+* Live refresh when changes occur
