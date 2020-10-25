@@ -17,7 +17,8 @@ import sqlite3
 data = sqlite3.connect('parking.db')
 d = data.cursor()
 
-d.execute('''CREATE TABLE parkinglots (name, size)''')
+d.execute("DROP TABLE parkinglots") #Temporary solution to not having the parking lots insert EVERY time
+d.execute('''CREATE TABLE IF NOT EXISTS parkinglots (name, size)''')
 
 d.execute("INSERT INTO parkinglots VALUES ('fargo',100)")
 d.execute("INSERT INTO parkinglots VALUES ('jarvis',200)")

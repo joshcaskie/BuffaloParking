@@ -1,18 +1,24 @@
 #https://bottlepy.org/docs/dev/tutorial.html
-from bottle import Bottle, run, get, post, request
+from bottle import Bottle, run, get, post, request, redirect
 import functions
 
 app = Bottle()
 
-@app.route('/')
-def hello():
-    return "Hello World!"
+@app.get('/')
+def lot_submit():
+    return ''' 
+            <form action='/' method="post">
+                    Lot: <input name="lot" type="text" />
+                    <input value="Enter" type="submit" />
+            </form> '''
 
-@app.route("/bob")
-def bob():
-    return "Bob says hi!"
+@app.post('/')
+def lot_grab():
+    #lot = request.forms.get("lot")
+    #return lots()
+    redirect("/fargo")
 
-@app.route('/display-lots')
+@app.route('/fargo')
 def lots():
     return functions.display_lots()
 
