@@ -1,10 +1,10 @@
-def check_login(username, password):
-    x = True
-    if username != "josh":
-        x = False
-    if password != "josh":
-        x = False
-    return x
+# def check_login(username, password):
+#     x = True
+#     if username != "josh":
+#         x = False
+#     if password != "josh":
+#         x = False
+#     return x
 
 # JSON --> https://docs.python.org/3/library/json.html
 import json
