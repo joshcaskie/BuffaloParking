@@ -31,9 +31,33 @@ def display_lots():
     ans = {}
 
     for i in lots:
-        ans[i[0]] = i[1]; #This should make it easier for the JS side --> convert to Object
+        ans[i[0]] = i[1] #This should make it easier for the JS side --> convert to Object
 
     parking.commit()
     parking.close()
 
     return json.dumps(ans)
+
+def enter_lot(lot):
+    parking = sqlite3.connect('parking.db')
+    p = parking.cursor()
+
+    #lots = p.execute("SELECT * FROM parkinglots WHERE name=?", lot) #Security!
+    p.execute("UPDATE parkinglots SET size=size-1 WHERE name=(?) ", (lot,)) # https://docs.python.org/2/library/sqlite3.html --> create_function
+    # https://www.sqlite.org/lang_update.html
+
+    parking.commit()
+    parking.close()
+
+    return 0
+
+def leave_lot(lot):
+    parking = sqlite3.connect('parking.db')
+    p = parking.cursor()
+
+    p.execute("UPDATE parkinglots SET size=size+1 WHERE name=(?) ", (lot,))
+
+    parking.commit()
+    parking.close()
+
+    return 0

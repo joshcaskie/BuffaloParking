@@ -24,10 +24,29 @@ def lot_grab():
     lot = request.forms.get("lot")
     redirect("/" + lot) #better way to do this? Formatting strings?
 
-@app.route('/fargo')
+
+@app.get('/fargo')
 def fargo():
     lot = "fargo"
-    return "Welcome to Fargo!"
+    return '''Welcome to Fargo Lot! </br>
+        <form action='/fargo-parked' method="post">
+            <input value="Park" type="submit" />
+        </form>
+    '''
+@app.post('/fargo-parked')
+def fargo_parked():
+    functions.enter_lot("fargo")
+    return '''Welcome to Fargo Lot! </br>
+        <form action='/fargo-leave' method="post">
+            <input value="Leave" type="submit" />
+        </form>
+    '''
+@app.post('/fargo-leave')
+def fargo_leave():
+    functions.leave_lot("fargo")
+    return "Thank you for parking at Fargo!"
+
+
 
 @app.route('/jarvis')
 def jarvis():
