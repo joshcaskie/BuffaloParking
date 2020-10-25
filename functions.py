@@ -1,15 +1,7 @@
-# def check_login(username, password):
-#     x = True
-#     if username != "josh":
-#         x = False
-#     if password != "josh":
-#         x = False
-#     return x
-
 # JSON --> https://docs.python.org/3/library/json.html
-import json
 #json.dumps(_) --> puts INTO json
 #json.parse(_) --> takes OUT of json
+import json
 
 
 #Database --> https://docs.python.org/3/library/sqlite3.html
