@@ -4,9 +4,19 @@ import functions
 
 app = Bottle()
 
+#Front End calls!!
 @app.get('/')
 def lot_submit():
     return static_file(filename="homepage.html", root="")
+@app.get('/frontend.js') #include JS in server
+def frontend_js():
+    return static_file(filename="frontend.js", root="")
+@app.get('/display-current')
+def display():
+    #print("It's working!")
+    return functions.display_lots()
+
+
 
 @app.post('/')
 def lot_grab():
@@ -17,7 +27,7 @@ def lot_grab():
 @app.route('/fargo')
 def fargo():
     lot = "fargo"
-    return functions.display_lots()
+    return "Welcome to Fargo!"
 
 @app.route('/jarvis')
 def jarvis():

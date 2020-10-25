@@ -2,10 +2,22 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Hello!</title>
+    <script src="frontend.js"></script> <!-- Include JS in HTML -->
+    <title>UB Parking!</title>
 </head>
-<body>
+<body onload=onLoad()>
     <h1>UB Parking Tracker</h1>
 
+    <h2>Current lot situations</h2>
+    <div id="currentstate">Hello</div>
+
+        <!-- Form to select the parking location -->
+        <form action='/' method="post">
+            Lot: <input name="lot" type="text" />
+            <input value="Enter" type="submit" />
+        </form>
 </body>
 </html>
+
+<!-- Source for HTML https://www.w3schools.com/tags/default.asp -->
+<!-- Source for AJAX https://www.w3schools.com/xml/ajax_intro.asp -->

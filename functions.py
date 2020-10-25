@@ -1,6 +1,6 @@
 # JSON --> https://docs.python.org/3/library/json.html
 #json.dumps(_) --> puts INTO json
-#json.parse(_) --> takes OUT of json
+#json.loads(_) --> takes OUT of json
 import json
 
 
@@ -15,6 +15,10 @@ d.execute('''CREATE TABLE IF NOT EXISTS parkinglots (name, size)''')
 d.execute("INSERT INTO parkinglots VALUES ('fargo',100)")
 d.execute("INSERT INTO parkinglots VALUES ('jarvis',200)")
 
+#test = d.execute("SELECT * FROM parkinglots")
+#for i in test:
+    #print({i[0]:i[1]})
+
 data.commit()
 data.close()
 
@@ -24,12 +28,13 @@ def display_lots():
 
     lots = p.execute("SELECT * FROM parkinglots")
 
-    ans = ""
+    ans = []
 
     for i in lots:
-        ans = ans + json.dumps(i) + "\n"
+        ans.append({i[0]:i[1]})
 
     parking.commit()
     parking.close()
+    #print(json.dumps(ans))
 
-    return ans
+    return json.dumps(ans)
