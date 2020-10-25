@@ -13,17 +13,15 @@ function getRequest(url, cFunction){
 //So this will send a request to the Bottle Server, and the bottle server will return something!
 //That something will be called by cFunction
 
+
 function onLoad(){
     getRequest("/display-current", displayData);
 }
 function displayData(lotStates){
-    //let lots = JSON.parse(lotStates);
-    document.getElementById("currentstate").innerHTML = lotStates;
-    //So Lots is essentially a big dictionary with key:value pairs inside!
-    // let str = "";
-    // for (let i = 0; i < lots.length; i++){
-    //     str += i(0) + ":" + i(1).toString + "\n";
-    // }
+    let lots = JSON.parse(lotStates);
 
+    //So Lots is essentially a big dictionary with key:value pairs inside!
+    document.getElementById("fargo").innerHTML = lots["fargo"];
+    document.getElementById("jarvis").innerHTML = lots["jarvis"];
 
 }

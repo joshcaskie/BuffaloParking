@@ -28,13 +28,12 @@ def display_lots():
 
     lots = p.execute("SELECT * FROM parkinglots")
 
-    ans = []
+    ans = {}
 
     for i in lots:
-        ans.append({i[0]:i[1]})
+        ans[i[0]] = i[1]; #This should make it easier for the JS side --> convert to Object
 
     parking.commit()
     parking.close()
-    #print(json.dumps(ans))
 
-    return ans
+    return json.dumps(ans)

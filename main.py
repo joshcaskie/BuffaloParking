@@ -1,7 +1,6 @@
 #https://bottlepy.org/docs/dev/tutorial.html
 from bottle import Bottle, run, get, post, request, redirect, static_file
 import functions
-import json
 
 app = Bottle()
 
@@ -14,10 +13,8 @@ def frontend_js():
     return static_file(filename="frontend.js", root="")
 @app.get('/display-current')
 def display():
-    #print("It's working!")
-    ans = functions.display_lots()
-    return json.dumps(ans)
-    #return "yurdddd"
+    return functions.display_lots()
+
 
 
 
