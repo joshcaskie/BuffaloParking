@@ -4,7 +4,7 @@ function getRequest(url, cFunction){
     xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
-      cFunction(this);
+      cFunction(this.responseText); //Needed this to be this.responseText!!!
     }
  };
   xhttp.open("GET", url, true);
@@ -19,5 +19,11 @@ function onLoad(){
 function displayData(lotStates){
     //let lots = JSON.parse(lotStates);
     document.getElementById("currentstate").innerHTML = lotStates;
+    //So Lots is essentially a big dictionary with key:value pairs inside!
+    // let str = "";
+    // for (let i = 0; i < lots.length; i++){
+    //     str += i(0) + ":" + i(1).toString + "\n";
+    // }
+
 
 }

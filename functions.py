@@ -37,4 +37,4 @@ def display_lots():
     parking.close()
     #print(json.dumps(ans))
 
-    return json.dumps(ans)
+    return ans
